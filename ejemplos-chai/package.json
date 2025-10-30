@@ -1,0 +1,17 @@
+{
+  "name": "ejemplos-chai",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha './src/**/*.spec.js'"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "chai": "^6.2.0",
+    "mocha": "^11.7.4"
+  }
+}
