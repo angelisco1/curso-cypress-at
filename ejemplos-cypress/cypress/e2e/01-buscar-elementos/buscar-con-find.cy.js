@@ -12,7 +12,21 @@ describe("Busquedas con find", () => {
 
   it("el enlace de Netflix tiene como href '#Netflix'", () => {
     cy.contains("a", "Netflix")
-      .should("have.attr", "href")
-      .and("have.value", "#Netflix")
+      .should("have.attr", "href", "#Netflix")
+  })
+
+  it("el elemento div de los listados tiene 2 listados", () => {
+    cy.get("[data-cy='listados']")
+      .children()
+      .should("have.lengthOf", 2)
+      .eq(1)
+      .children()
+      .should("have.lengthOf", 3)
+      .parent()
+      .parent()
+      .children()
+      .eq(0)
+      .children()
+      .should("have.lengthOf", 4)
   })
 })

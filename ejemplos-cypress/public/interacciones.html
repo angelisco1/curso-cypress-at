@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buscar elementos web</title>
+  <style>
+    body {
+      height: 100vh;
+      width: 100vw;
+      background-color: #242424;
+      color: white;
+    }
+
+    .center {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #panel-codigo-secreto {
+      width: 160px;
+      border: 1px solid black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #pantalla-codigo {
+      width: 100%;
+      height: 50px;
+      background-color: black;
+      color: yellow;
+      font-size: 30px;
+      text-align: right;
+    }
+
+    .fila-teclas {
+      display: flex;
+    }
+
+    .tecla {
+      width: 50px;
+      height: 50px;
+      border: 1px solid black;
+      background-color: rgb(215, 215, 215);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="center">
+    <h2 id="titulo">Interacciones</h2>
+    <div id="caja-retry-ability"></div>
+
+
+    <div id="panel-codigo-secreto">
+      <div id="pantalla-codigo"></div>
+      <div id="teclado">
+        <div class="fila-teclas">
+          <div class="tecla tecla-num" id="p1">1</div>
+          <div class="tecla tecla-num" id="p2">2</div>
+          <div class="tecla tecla-num" id="p3">3</div>
+        </div>
+        <div class="fila-teclas">
+          <div class="tecla tecla-num" id="p4">4</div>
+          <div class="tecla tecla-num" id="p5">5</div>
+          <div class="tecla tecla-num" id="p6">6</div>
+        </div>
+        <div class="fila-teclas">
+          <div class="tecla tecla-num" id="p7">7</div>
+          <div class="tecla tecla-num" id="p8">8</div>
+          <div class="tecla tecla-num" id="p9">9</div>
+        </div>
+        <div class="fila-teclas">
+          <div class="tecla tecla-clear" id="pclear">CLD</div>
+          <div class="tecla tecla-num" id="p0">0</div>
+          <div class="tecla tecla-del" id="pdel">DEL</div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <script src="app.js"></script>
+
+  <script>
+    const btn3500 = document.createElement('button');
+    btn3500.id = "btn-lazy-3500";
+    btn3500.innerText = 'Soy un botón perezoso';
+    setTimeout(() => {
+      document.getElementById('caja-retry-ability').appendChild(btn3500);
+    }, 3500);
+
+    const btn5500 = document.createElement('button');
+    btn5500.id = "btn-lazy-5500";
+    btn5500.innerText = 'Soy un botón más perezoso todavía';
+    setTimeout(() => {
+      document.getElementById('caja-retry-ability').appendChild(btn5500);
+    }, 5500);
+  </script>
+</body>
+</html>
