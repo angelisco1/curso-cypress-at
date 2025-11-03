@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npx http-server ./public",
+    "start:server": "node ./public/server.js",
     "cy:open": "cypress open"
   },
   "keywords": [],
@@ -12,5 +13,8 @@
   "description": "",
   "devDependencies": {
     "cypress": "^15.5.0"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
   }
 }

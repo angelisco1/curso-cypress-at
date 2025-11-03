@@ -88,9 +88,57 @@
       </div>
     </div>
 
+    <div id="hobbies" data-cy="hobbies">
+      <div><input type="checkbox" id="hobby1" name="hobby" value="cine">Cine</div>
+      <div><input type="checkbox" id="hobby2" name="hobby" value="musica">Música</div>
+      <div><input type="checkbox" id="hobby3" name="hobby" value="series" checked>Series</div>
+      <div><input type="checkbox" id="hobby4" name="hobby" value="tenis" checked>Tenis</div>
+      <div><input type="checkbox" id="hobby5" name="hobby" value="baloncesto">Baloncesto</div>
+    </div>
 
+    <select id="select-coches-electricos">
+      <option value="polestar-2">Polestar 2</option>
+      <option value="nio-et7">Nio eT7</option>
+      <option value="tesla-model-3">Tesla Model 3</option>
+      <option value="xpeng-p7">Xpeng P7</option>
+    </select>
+
+    <select id="select-colores" multiple>
+      <option value="negro">Negro</option>
+      <option value="rojo">Rojo</option>
+      <option value="azul">Azul</option>
+      <option value="amarillo">Amarillo</option>
+      <option value="blanco">Blanco</option>
+    </select>
+
+    <div id="js-popups">
+      <button type="button" id="btn-alert">Mostrar un Alert</button>
+      <button type="button" id="btn-confirm">Quitar el mensaje</button>
+      <p id="mensaje-confirm">Mensaje: <span id="confirm-nombre">The Marathon Continues</span></p>
+      <button type="button" id="btn-prompt">Mostrar tu nombre</button>
+      <p id="mensaje-prompt">Nombre: <span id="prompt-nombre"></span></p>
+    </div>
+
+    <div id="dashboard-screenshot">
+      <div>
+        <h3>Datos de Charly Falco</h3>
+        <p>Email: <span id="email">cfalco@gmail.com</span></p>
+        <p>DNI: <span id="dni">00000000T</span></p>
+        <p>Saldo invertido: <span id="saldo">300000€</span></p>
+      </div>
+      <ul id="inversiones">
+        <li>50% - Hooly, Inc</li>
+        <li>30% - Pied Piper, Inc</li>
+        <li>20% - Aviato, Inc</li>
+      </ul>
+    </div>
 
   </div>
+
+  <script>
+    const valorCookie = 'Cookies, cookies...';
+    document.cookie = `miCookie=${valorCookie};`;
+  </script>
 
   <script src="app.js"></script>
 

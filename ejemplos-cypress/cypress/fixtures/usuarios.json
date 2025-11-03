@@ -1,0 +1,10 @@
+{
+  "UsuarioBien": {
+    "email": "cfalco@gmail.com",
+    "password": "cfalco"
+  },
+  "UsuarioMal": {
+    "email": "cfalco@gmail.com",
+    "password": "opaosdjapsodjas"
+  }
+}

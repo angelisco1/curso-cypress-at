@@ -26,12 +26,24 @@ describe("Lab: Navegar por el DOM", () => {
   })
 
   it("Comprueba que la última fila tiene el número de celdas correcto", () => {
-    cy.get("#customers > tbody > tr")
+    // cy.get("#customers > tbody > tr")
+    //   .last()
+    //   .children()
+    //   .should("have.lengthOf", 3)
+
+    // cy.get("#customers > tbody > tr")
+    //   .last()
+    //   .find("td")
+    //   .should("have.lengthOf", 3)
+
+    cy.get("#customers > tbody > tr").as('filas-tabla')
+
+    cy.get("@filas-tabla")
       .last()
       .children()
       .should("have.lengthOf", 3)
 
-    cy.get("#customers > tbody > tr")
+    cy.get("@filas-tabla")
       .last()
       .find("td")
       .should("have.lengthOf", 3)

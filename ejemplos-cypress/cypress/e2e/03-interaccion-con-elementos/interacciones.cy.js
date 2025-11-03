@@ -91,4 +91,156 @@ describe("Interacciones con elementos web", () => {
       // .and("have.lengthOf", 4)
   })
 
+  it("Hay 2 hobbies marcados por defecto", () => {
+    cy.get('[data-cy="hobbies"] input:checked')
+      .should("have.lengthOf", 2)
+  })
+
+  it("Después de marcar el hobbie de cine y de series hay 3 hobbies marcados por defecto", () => {
+    // cy.get("#hobbies")
+    //   .check()
+
+    cy.get("#hobby1")
+      .check()
+    cy.get("#hobby3")
+      .check()
+      // .click()
+
+    cy.get('[data-cy="hobbies"] input:checked')
+      .should("have.lengthOf", 3)
+
+    cy.get("#hobby4")
+      .uncheck()
+
+    cy.get('[data-cy="hobbies"] input:checked')
+      .should("have.lengthOf", 2)
+  })
+
+  it("Al seleccionar xpeng se queda seleccionado", () => {
+    cy.get('#select-coches-electricos')
+      .select('xpeng-p7')
+
+    cy.get('#select-coches-electricos option:selected')
+      .should("have.value", 'xpeng-p7')
+
+    cy.get('#select-coches-electricos')
+      .select('nio-et7')
+
+    cy.get('#select-coches-electricos option:selected')
+      .should("have.text", "Nio eT7")
+  })
+
+  it("Al seleccionar dos colores se quedan seleccionados", () => {
+    cy.get('#select-colores')
+      .should("have.attr", "multiple")
+
+    cy.get('#select-colores')
+      .select(["amarillo", "blanco"])
+
+    cy.get("#select-colores")
+      .invoke("val")
+      .should("have.members", ["amarillo", "blanco"])
+      .should("have.lengthOf", 2)
+
+    cy.get('#select-colores option:selected')
+      .each($opt => {
+        console.log($opt.val())
+        expect(["amarillo", "blanco"]).to.include($opt.val())
+        expect(["Amarillo", "Blanco"]).to.include($opt.text())
+      })
+  })
+
+  it("Debería de haber una cookie con el valor 'Cookies, cookies...'", () => {
+    cy.getAllCookies()
+      .should("have.lengthOf", 1)
+
+    cy.getCookie("miCookie")
+      .should("have.property", "value", "Cookies, cookies...")
+
+    cy.clearAllCookies()
+
+    cy.getAllCookies()
+      .should("be.empty")
+
+    cy.setCookie("una-cookie", "que rica")
+
+    cy.getAllCookies()
+      .then(cookies => {
+        expect(cookies[0]).to.have.property("value", "que rica")
+      })
+  })
+
+  it("Al mostrar el alert, el texto es 'Hola mundo!!!'", () => {
+    cy.get('#btn-alert')
+      .click()
+
+    cy.on("window:alert", (textoDelAlert) => {
+      console.log(textoDelAlert)
+      expect(textoDelAlert).to.be.equal("Hola mundo!!!")
+    })
+  })
+
+  it("Al mostrar el confirm y aceptarlo, el mensaje se tiene que quedar vacío", () => {
+    cy.get('#btn-confirm')
+      .click()
+
+    cy.on("window:confirm", (textoDelConfirm) => {
+      console.log(textoDelConfirm)
+      expect(textoDelConfirm).to.be.equal("¿Quieres borrar el mensaje?")
+      return true
+    })
+
+    cy.get("#confirm-nombre")
+      .should("have.text", "")
+  })
+
+  it("Al mostrar el confirm y cancelarlo, el mensaje se tiene que quedar como estaba", () => {
+    cy.get('#btn-confirm')
+      .click()
+
+    cy.on("window:confirm", () => {
+      return false
+    })
+
+    cy.get("#confirm-nombre")
+      .should("have.text", "The Marathon Continues")
+  })
+
+  it("Al mostrar el prompt e introducir tu nombre, este se muestra en la web", () => {
+    cy.window()
+      .then((win) => {
+        cy.stub(win, 'prompt').returns('Charly')
+      })
+
+    cy.get('#btn-prompt')
+      .click()
+
+    cy.get("#prompt-nombre")
+      .should("have.text", "Charly")
+  })
+
+  it("Al mostrar el prompt y no introducir tu nombre, no se muestra en la web", () => {
+    cy.window()
+      .then((win) => {
+        // Esto sería si le damos a cancelar
+        cy.stub(win, 'prompt').returns(null)
+
+        // Esto sería si le damos a aceptar sin introducir ningún valor en el popup
+        // cy.stub(win, 'prompt').returns('')
+      })
+
+    cy.get('#btn-prompt')
+      .click()
+
+    cy.get("#prompt-nombre")
+      .should("have.text", "")
+  })
+
+  it("Sacar pantallazo de las inversiones", () => {
+    cy.get("#dashboard-screenshot")
+      .screenshot("dashboard-inversiones", {
+        blackout: ["#email", "#dni", "h3"]
+      })
+  })
+
 })
