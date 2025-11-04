@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p>Tiempo para hoy: <span id="tiempo"></span></p>
+
+  <script>
+    function getEmoji() {
+      return fetch('http://localhost:3000/get-weather')
+        .then(resp => resp.json())
+        .then(({ weather }) => {
+            switch(weather) {
+              case 'soleado': return '☀️';
+              case 'parcialmente-nublado': return '0';
+              case 'nublado': return '☁️';
+              case 'lluvioso': return '2';
+              case 'tormenta': return '3';
+              case 'nevado': return '4';
+            }
+          });
+    }
+
+    getEmoji().then(val => {
+      document.getElementById('tiempo').innerText = val;
+    })
+  </script>
+</body>
+</html>

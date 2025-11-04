@@ -133,7 +133,33 @@
       </ul>
     </div>
 
+    <div class="center">
+      <div id="caja-edicion">
+        <label for="modoEdicion">Edición deshabilitada:</label>
+        <input type="checkbox" id="modoEdicion">
+      </div>
+      <div>
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" id="nombre">
+      </div>
+    </div>
+
   </div>
+
+  <script>
+    const modoEdicionDesactivado = Math.floor(Math.random() * 3) === 0;
+
+    const checkEdicion = document.getElementById('modoEdicion');
+    const inputNombre = document.getElementById('nombre');
+    checkEdicion.checked = modoEdicionDesactivado;
+    inputNombre.disabled = modoEdicionDesactivado;
+
+    checkEdicion.addEventListener('click', () => {
+      const checked = checkEdicion.checked;
+      checkEdicion.checked = checked;
+      inputNombre.disabled = checked;
+    })
+  </script>
 
   <script>
     const valorCookie = 'Cookies, cookies...';

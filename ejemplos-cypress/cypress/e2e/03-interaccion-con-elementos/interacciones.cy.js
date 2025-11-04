@@ -180,6 +180,7 @@ describe("Interacciones con elementos web", () => {
     })
   })
 
+
   it("Al mostrar el confirm y aceptarlo, el mensaje se tiene que quedar vacío", () => {
     cy.get('#btn-confirm')
       .click()
@@ -241,6 +242,24 @@ describe("Interacciones con elementos web", () => {
       .screenshot("dashboard-inversiones", {
         blackout: ["#email", "#dni", "h3"]
       })
+  })
+
+  it("Test condicional", () => {
+    // cy.get('#modoEdicion')
+    //   .uncheck()
+    cy.get('#modoEdicion')
+      .then(($elem) => {
+        const esta = $elem.prop("checked")
+        console.log($elem)
+        console.log(esta)
+        if (esta) {
+          $elem.trigger("click")
+        }
+      })
+
+    cy.get('input#nombre')
+      .type('Charly')
+      .should("have.value", "Charly")
   })
 
 })

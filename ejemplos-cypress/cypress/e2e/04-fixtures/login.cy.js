@@ -65,4 +65,20 @@ describe("Página de login", () => {
       // })
 
   })
+
+  it("si usas un usuario incorrecto vas a la página de login (con el comando login)", () => {
+
+    // cy.fixture("usuarios.json")
+    // .then(datos => {
+    //   console.log(datos)
+    //   const usuario = datos.UsuarioMal
+      const usuario = usuariosCargados.UsuarioMal
+
+      cy.login(usuario.email, usuario.password)
+
+      cy.url()
+        .should("include", "/login")
+    // })
+
+  })
 })
